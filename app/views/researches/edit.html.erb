@@ -1,0 +1,10 @@
+<%= form_for(@researches) do |form| %>
+    <p><%= form.label("title") %></p>
+    <p><%= form.text_field("title") %></p>
+    <p><%= form.label("contents") %></p>
+    <p><%= form.text_area("contents") %></p>
+    <p><%= form.label("main_containts") %></p>
+    <p><%= form.text_area("main_containts") %></p>
+    <p><%= form.submit %></p>
+<% end %>
+<p><%= link_to("Back to all research", research_path) %></p>

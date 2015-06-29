@@ -1,0 +1,6 @@
+$("#myupdatemember_<%= @member.id %>").modal('hide');
+$("#member_<%= @member.id %>").fadeOut(500, function(){
+
+    $(this).remove();
+    $("#my_member").prepend('<%= j render @member %>');
+});

@@ -1,0 +1,9 @@
+<%= form_for(@member) do |form| %>
+    <p>
+      <%= form.file_field :image %>
+      <%= form.text_field :name %>
+      <%= form.text_area :description%>
+    <p><%= form.submit %></p>
+    </p>
+<% end %>
+<p><%= link_to("Back to all entries", entries_path) %></p>

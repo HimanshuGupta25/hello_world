@@ -1,0 +1,327 @@
+<script>$(function() {
+
+    var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed"),
+            $fluidEl = $("figure");
+
+    $allVideos.each(function() {
+
+        $(this)
+            // jQuery .data does not work on object/embed elements
+                .attr('data-aspectRatio', this.height / this.width)
+                .removeAttr('height')
+                .removeAttr('width');
+
+    });
+
+    $(window).resize(function() {
+
+        var newWidth = $fluidEl.width();
+        $allVideos.each(function() {
+
+            var $el = $(this);
+            $el
+                    .width(newWidth)
+                    .height(newWidth * $el.attr('data-aspectRatio'));
+
+        });
+
+    }).resize();
+
+});</script>
+  <!-- Navigation
+================================================== -->
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <% for entry in @entries %>
+              <li><a href="<%= entry.link %>"><%= entry.title %></a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div><!--/.row -->
+  </div><!--/.container -->
+</div>
+</header>
+<!--End Header-->
+<!--start wrapper-->
+<div class="wrapper">
+  <div class="slider-wrapper">
+    <div class="slider">
+      <div class="fs_loader"></div>
+      <div class="slide">
+        <!--1- slide background-->
+        <img src="assets/fraction-slider/gadgets/laptop-lg.png" data-position="-30,550" data-in="bottom" data-delay="500" data-out="fade"  width="800" height="750">                                     <!--3- laptop-->
+
+        <p class="para-new" data-position="10,600" data-in="top"  data-out="Right" data-delay="">Mapunity News</p>
+      </div>
+
+      <div class="slide">
+        <img src="assets/fraction-slider/build.png" data-in="fade" data-out="fade" width="1920" height="auto"/>
+        <p class="claim  theme-colored" data-position="110,250" data-in="left" data-out="Right" data-delay="2500">Mapunity News</p>
+
+        <img src="assets/fraction-slider/gadgets/laptop.png" width="456" height="272" data-position="103,1180" data-in="bottom" data-out="bottom" data-delay="400">
+
+        <img src="assets/fraction-slider/gadgets/mack.png" width="357" height="313" data-position="60,1040" data-in="top" data-out="bottom" data-delay="200">
+
+        <img src="assets/fraction-slider/gadgets/ipad.png" width="120" height="170" data-position="230,1030" data-in="left" data-delay="300" data-out="left">
+
+        <img src="assets/fraction-slider/gadgets/smartphone.png" width="70" height="140" data-position="270,1320" data-in="right" data-delay="300" data-out="right">
+        <div class="para-2"	data-position="200,250" data-in="left" data-out="right" data-delay="3000">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aspernatur consequatur consequuntur debitis
+          delectus nostrum quam quod reiciendis sit!
+        </div>
+
+      </div>
+      <!--
+      <div class="slide">
+          <img src="images/fraction-slider/fraction_6.png" data-in="fade" data-out="fade" width="1920" height="auto">
+
+          <p class="claim light-pink" data-position="50,1050" data-in="top"  data-out="top" data-ease-in="jswing">Latest News</p>
+
+          <p class="teaser turky" data-position="120,1180" data-in="left" data-delay="1500">Mapunity News</p>
+
+          <p class="teaser turky" data-position="170,1180" data-in="left"  data-delay="3000">full control over each element</p>
+
+          <img src="images/fraction-slider/slider-girl.png" width="480" height="480" data-position="-20,250" data-in="right" data-delay="500" data-out="fade" style="width:auto; height:auto">
+
+          <a href=""	class="slider-read" data-position="340,1330" data-in="bottom" data-out="top" data-delay="6500">download Now</a>
+      </div> -->
+    </div>
+  </div>
+  <!--End Slider-->
+  <!--- --->
+  <div class="info_service">
+    <div class="container">
+      <div class="row sub_content">
+<!--http://www.youtube.com/embed/JMl8cQjBfqk -->
+        <div class="col-lg-6 col-md-6">
+          <div class="dividerHeading">
+            <h4><span>Video</span></h4>
+          </div>
+          <figure>
+            <iframe width="560" height="315" src="<% for gallery in @galleries %><%= gallery.url %><% end %>" frameborder="0" allowfullscreen></iframe>
+          </figure>
+        </div><!-- TESTIMONIALS END -->
+
+        <div class="col-lg-6">
+          <div class="dividerHeading">
+            <h4><span>Blog</span></h4>
+          </div>
+          <div class="tab-content clearfix" id="myTabContent">
+            <marquee id="test" behavior="scroll" direction="up" scrolldelay="100" scrollamount="4" onMouseOver="document.all.test.stop()" onMouseOut="document.all.test.start()" style=" height: 267px;">
+
+              <% for blog in @blogs %>
+                  <h3><%= link_to(blog.title, blogs_path) %></h3>
+                  <p><%= time_ago_in_words(blog.created_at) %></p>
+                  <p><%= blog.short_contents %></p>
+              <% end %>
+
+            </marquee>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- -->
+  <!--start info service-->
+<div class="info_service" id="Research">
+  <div class="container">
+    <div class="row sub_content">
+      <div class="col-md-12">
+        <div class="dividerHeading">
+          <h4><span>Research</span></h4>
+        </div>
+      </div>
+          <div class="rs_box">
+            <% for research in @researches %>
+            <div class="col-md-3 col-sm-6">
+              <div class="serviceBox_1">
+                <div class="icon_service">
+                  <i class="fa fa-home"></i>
+
+                  <h3><%= research.name %></h3>
+                </div>
+                <div class="fr_content">
+                  <p>
+                    <%= research.contents %>
+                  </p>
+
+                  <a class="read" href="#" id="myBtn">Read more</a>
+                  <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title"><%= research.name %></h4>
+                        </div>
+                        <div class="modal-body">
+                          <p><%= research.main_contents %></p>
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+
+    </div>
+  </div>
+</div>
+  <!--end info service-->
+
+  <!--Start Technology -->
+  <div id="Technology" class="content-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <h4><span  style="color: #fff !important;">Technology</span></h4>
+          </div>
+        </div>
+      </div> <!-- /.row -->
+
+      <div class="row sub_content">
+        <% for technology in @technologies %>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <div class="serviceBox_2">
+            <h3><%= technology.title %></h3>
+            <p><%= technology.contents %>.</p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+  <!--End Technology -->
+  <!--Start People-->
+  <div class="latest_work" id="People">
+    <div class="container">
+      <div class="row sub_content">
+        <div class="carousel-intro">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="dividerHeading">
+              <h4><span>People</span></h4>
+            </div>
+            <div class="carousel-navi">
+              <div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
+              <div id="work-next" class="arrow-right jcarousel-next"><i class="fa fa-angle-right"></i></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <!-------     meet the tema ------->
+        <div class="jcarousel recent-work-jc">
+          <ul class="jcarousel-list">
+            <!-- Recent Work Item -->
+            <% for member in @members %>
+            <li class="col-lg-3 col-md-3 col-sm-6">
+
+              <figure>
+                <div class="eve-team">
+                  <div class="pic">
+                    <%= image_tag member.image_url(:thumb) if member.image? %>
+                    <div class="social_media_team">
+                    </div>
+                  </div>
+                  <div class="team_prof">
+                    <h3 class="names"><%= member.name%></h3>
+                    <p class="description">
+                      <%= member.description%>
+                    </p>
+                  </div>
+                </div>
+
+              </figure>
+
+            </li>
+                <% end %>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Start recent work-->
+
+</div>
+<script>
+    $(document).ready(function(){
+        $("#myBtn").click(function(){
+            $("#myModal").modal();
+        });
+        $("#myBtn1").click(function(){
+            $("#myModal1").modal();
+        });
+
+        $("#traffic").click(function(){
+            $("#myModal-traffic").modal();
+        });
+        $("#city").click(function(){
+            $("#myModal-city").modal();
+        });
+        $("#digital").click(function(){
+            $("#myModal-digital").modal();
+        });
+        $("#Health").click(function(){
+            $("#myModal-Health").modal();
+        });
+        $("#Safety").click(function(){
+            $("#myModal-Safety").modal();
+        });
+        $("#Environment").click(function(){
+            $("#myModal-Environment").modal();
+        });
+        $("#Education").click(function(){
+            $("#myModal-Education").modal();
+        });
+        $("#Gender").click(function(){
+            $("#myModal-Gender").modal();
+        });
+        $("#Economy").click(function(){
+            $("#myModal-Economy").modal();
+        });
+        $("#Market").click(function(){
+            $("#myModal-Market").modal();
+        });
+    });
+
+</script>
+<!-- Start Style Switcher
+<div class="switcher"></div>
+<!-- End Style Switcher -->
+<script>
+    $(window).load(function(){
+        $('.slider').fractionSlider({
+            'fullWidth': 			true,
+            'controls': 			true,
+            'responsive': 			true,
+            'dimensions': 			"1920,450",
+            'increase': 			true,
+            'pauseOnHover': 		true,
+            'slideEndAnimation': 	true,
+            'autoChange':           true
+        });
+    });
+</script>
+

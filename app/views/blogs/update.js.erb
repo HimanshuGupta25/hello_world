@@ -1,0 +1,7 @@
+$("#myUpdateblog_<%= @blog.id %>").modal('hide');
+$("#blog_<%= @blog.id %>").fadeOut(500, function(){
+
+    $(this).remove();
+    $("#my_tab_content").prepend('<%= j render @blog %>');
+});
+

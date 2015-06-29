@@ -1,0 +1,4 @@
+$("#mygallery").modal('hide');
+$(".gallery_url").val('');
+$("#my_gallery").prepend('<%= j render @gallery %>')
+$("#gallery_<%= @gallery.id %>").hide().fadeIn(1000)

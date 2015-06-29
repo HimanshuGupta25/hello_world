@@ -1,0 +1,7 @@
+<%= form_for(@entry) do |form| %>
+    <p><%= form.label("Hyper Link") %></p>
+    <p><%= form.text_field("link") %></p>
+    <p><%= form.submit %></p>
+<% end %>
+<p><%= link_to("Back to this entry", entry_path(@entry)) %></p>
+<p><%= link_to("Back to all entries", entries_path) %></p>

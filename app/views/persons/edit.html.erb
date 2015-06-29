@@ -1,0 +1,7 @@
+<%= form_for(@painting) do |form| %>
+    <p>
+      <%= form.file_field :image %>
+    </p>
+<% end %>
+<p><%= link_to("Back to this entry", entry_path(@entry)) %></p>
+<p><%= link_to("Back to all entries", entries_path) %></p>

@@ -1,0 +1,6 @@
+$("#myupdategallery_<%= @gallery.id %>").modal('hide');
+$("#gallery_<%= @gallery.id %>").fadeOut(500, function(){
+
+    $(this).remove();
+    $("#my_gallery").prepend('<%= j render @gallery %>');
+});

@@ -1,0 +1,6 @@
+$("#myBlog").modal('hide');
+$(".blog_title").val('');
+$(".blog_short_contents").val('');
+$(".blog_main_contents").val('');
+$("#my_tab_content").prepend('<%= j render @blog %>');
+$("#blog_<%= @blog.id %>").hide().fadeIn(1000);

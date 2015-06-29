@@ -1,0 +1,6 @@
+$("#mymember").modal('hide');
+$(".member_image").val('');
+$(".member_name").val('');
+$(".member_description").val('');
+$("#my_member").prepend('<%= j render @member %>')
+$("#member_<%= @member.id %>").hide().fadeIn(1000)

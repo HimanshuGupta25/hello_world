@@ -1,0 +1,6 @@
+$("#myupdateresearch_<%= @research.id %>").modal('hide');
+$("#research_<%= @research.id %>").fadeOut(500, function(){
+
+    $(this).remove();
+    $("#my_research").prepend('<%= j render @research %>');
+});

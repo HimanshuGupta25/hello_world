@@ -1,0 +1,5 @@
+$("#myMenu").modal('hide');
+$(".entry_title").val('');
+$(".entry_link").val('');
+$("#my_menu").prepend('<%= j render @entry %>')
+$("#entry_<%= @entry.id %>").hide().fadeIn(1000)

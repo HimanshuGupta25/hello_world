@@ -1,0 +1,75 @@
+<div class="col-md-3 col-sm-6" id="research_<%= research.id %>">
+  <div class="serviceBox_1">
+    <div class="icon_service">
+      <i class="fa fa-home"></i>
+      <h3><%= best_in_place research, :name %></h3>
+    </div>
+    <div class="fr_content">
+      <p>
+        <%= best_in_place research, :contents %>
+      </p>
+
+      <a class="read" href="#" id="myBtn">Read more</a>
+      <div class="modal fade" id="mymodal67" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title"><%= research.name %></h4>
+            </div>
+            <div class="modal-body">
+              <p><%=best_in_place research, :main_contents %></p>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="color: #38B206;"><%= time_ago_in_words(research.created_at) %></div>
+  <div class="panel-body">
+    <div class="btn-group" role="button" aria-label="...">
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdateresearch_<%= research.id %>">Edit</button>
+      <%= link_to 'Delete', research, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" , remote: true%>
+    </div>
+  </div>
+  <!-- Modal -->
+  <%= form_for(research, :method => :put , remote: true) do |f| %>
+      <div class="modal fade" id="myupdateresearch_<%= research.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Research Update</h4>
+            </div>
+            <div class="modal-body">
+              <div class="field">
+                <%= f.label :Title %><br>
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+              <div class="field">
+                <%= f.label :Content %><br>
+                <%= f.text_area :contents , class: "form-control"%>
+              </div>
+              <div class="field">
+                <%= f.label :MainContent %><br>
+                <%= f.text_area :main_contents , class: "form-control"%>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= submit_tag "Update", class:"btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  <!-- modal -->
+
+</div>

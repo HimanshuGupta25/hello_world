@@ -1,0 +1,3 @@
+<% for person in @persons %>
+    <%= image_tag person.image_url(:thumb) if person.image? %>
+<% end %>

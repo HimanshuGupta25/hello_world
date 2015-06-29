@@ -1,0 +1,408 @@
+<script>$(function() {
+
+    var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed"),
+            $fluidEl = $("figure");
+
+    $allVideos.each(function() {
+
+        $(this)
+            // jQuery .data does not work on object/embed elements
+                .attr('data-aspectRatio', this.height / this.width)
+                .removeAttr('height')
+                .removeAttr('width');
+
+    });
+
+    $(window).resize(function() {
+
+        var newWidth = $fluidEl.width();
+        $allVideos.each(function() {
+
+            var $el = $(this);
+            $el
+                    .width(newWidth)
+                    .height(newWidth * $el.attr('data-aspectRatio'));
+
+        });
+
+    }).resize();
+
+});</script>
+<script>
+
+
+    $(document).ready(function() {
+
+        $("#technology_btn").hide(); //Initially form wil be hidden.
+
+        $("#tech_btn").click(function() {
+            $("#technology_btn").show();//Form shows on button click
+
+        });
+    });
+
+</script>
+<!-- Navigation
+================================================== -->
+  <!-- Button trigger modal -->
+  <div class="row">
+    <div class="text-center">
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myMenu">
+        Add
+      </button>
+      <button type="button" class="btn btn-warning btn-lg">
+        Edit
+      </button>
+    </div>
+  </div>
+  <br>
+  <!-- Modal -->
+  <%= form_for(@entry, remote: true) do |f| %>
+  <div class="modal fade" id="myMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center" id="myModalLabel">Menu Item</h4>
+        </div>
+        <div class="modal-body">
+        <div class="field">
+          <%= f.label :Name %><br>
+          <%= f.text_field :title, class: "form-control entry_title" %>
+        </div>
+          <div class="field">
+            <%= f.label :Link %><br>
+            <%= f.text_field :link , class: "form-control entry_link"%>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag "Create", class:"btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <!-- modal -->
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="my_menu">
+          <%= render @entries %>
+        </div>
+      </div><!--/.row -->
+    </div><!--/.container -->
+  </div>
+</header>
+<!--End Header-->
+<!--start wrapper-->
+<div class="wrapper">
+  <div class="info_service">
+    <div class="container">
+      <div class="row sub_content">
+
+        <div class="col-lg-6 col-md-6">
+          <div class="dividerHeading">
+            <h4><span>Video</span></h4>
+          </div>
+          <!-- Button trigger modal -->
+          <div class="row">
+            <div class="text-center">
+              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mygallery">
+                Add Video
+              </button>
+            </div>
+          </div>
+          <br>
+          <%= form_for(@gallery, remote: true) do |f| %>
+              <div class="modal fade" id="mygallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title text-center" id="myModalLabel">Video</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="field">
+                        <%= f.label :VideoUrl %><br>
+                        <%= f.text_field :url, class: "form-control gallery_url" %>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <%= submit_tag "Create", class:"btn btn-primary" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <!-- modal -->
+<div id="my_gallery">
+<%= render @galleries %>
+</div>
+        </div><!-- TESTIMONIALS END -->
+
+        <div class="col-lg-6">
+          <div class="dividerHeading">
+            <h4><span>Blog</span></h4>
+          </div>
+          <!-- Button trigger modal -->
+          <div class="row">
+            <div class="text-center">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myBlog">
+            Add New Blog
+          </button>
+              </div>
+            </div>
+          <br>
+          <!-- Modal -->
+          <%= form_for(@blog, remote: true) do |f| %>
+              <div class="modal fade" id="myBlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title text-center" id="myModalLabel">Blog Entry</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="field">
+                        <%= f.label :Title %><br>
+                        <%= f.text_field :title, class: "form-control blog_title" %>
+                      </div>
+                      <div class="field">
+                        <%= f.label :ShortContent %><br>
+                        <%= f.text_area :short_contents , class: "form-control blog_short_contents"%>
+                      </div>
+                      <div class="field">
+                        <%= f.label :MainContent %><br>
+                        <%= f.text_area :main_contents , class: "form-control blog_main_contents"%>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <%= submit_tag "Create", class:"btn btn-primary" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <!-- modal -->
+          <div class="tab-content clearfix" id="my_tab_content">
+            <%= render @blogs %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- -->
+  <!--start info service-->
+  <div class="info_service" id="Research">
+    <div class="container">
+      <div class="row sub_content" id="my_research">
+        <div class="col-md-12">
+          <div class="dividerHeading">
+            <h4><span>Research</span></h4>
+          </div>
+        </div>
+        <!-- Button trigger modal -->
+        <div class="row">
+          <div class="text-center">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myresearch">
+              Add New Research
+            </button>
+          </div>
+        </div>
+        <br>
+        <!-- Modal -->
+        <%= form_for(@research, remote: true) do |f| %>
+            <div class="modal fade" id="myresearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Research Entry</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="field">
+                      <%= f.label :Title %><br>
+                      <%= f.text_field :name, class: "form-control research_name" %>
+                    </div>
+                    <div class="field">
+                      <%= f.label :Content %><br>
+                      <%= f.text_area :contents , class: "form-control research_contents"%>
+                    </div>
+                    <div class="field">
+                      <%= f.label :MainContent %><br>
+                      <%= f.text_area :main_contents , class: "form-control research_main_contents"%>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <%= submit_tag "Create", class:"btn btn-primary" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+        <!-- modal -->
+            <div class="rs_box">
+              <%= render @researches %>
+            </div>
+
+      </div>
+    </div>
+  </div>
+  <!--end info service-->
+
+  <!--Start Technology -->
+  <div id="Technology" class="content-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <h4><span  style="color: #fff !important;">Technology</span></h4>
+          </div>
+        </div>
+      </div> <!-- /.row -->
+      <!-- Button trigger modal -->
+      <div class="row">
+        <div class="text-center">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mytechnology">
+            Add
+          </button>
+          <button type="button" class="btn btn-warning btn-lg" id="tech_btn">
+            Edit
+          </button>
+        </div>
+      </div>
+      <br>
+      <!-- Modal -->
+      <%= form_for(@technology, remote: true) do |f| %>
+          <div class="modal fade" id="mytechnology" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title text-center" id="myModalLabel">Technology Entry</h4>
+                </div>
+                <div class="modal-body text-left">
+                  <div class="field">
+                    <%= f.label :Title %><br>
+                    <%= f.text_field :title, class: "form-control technology_title" %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :Content %><br>
+                    <%= f.text_area :contents , :maxlength => 216, :rows => 3, class: "form-control technology_contents"%>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <%= submit_tag "Create", class:"btn btn-primary" %>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+      <!-- modal -->
+      <div class="row sub_content" id="my_technology">
+            <%= render @technologies %>
+      </div>
+
+    </div>
+  </div>
+  <!--End Technology -->
+  <!--Start People-->
+
+  <div class="latest_work" id="People">
+    <div class="container">
+      <div class="row sub_content">
+        <div class="carousel-intro">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="dividerHeading">
+              <h4><span>People</span></h4>
+            </div>
+            <!-- Button trigger modal -->
+            <div class="row">
+              <div class="text-center">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mymember">
+                  Add New People
+                </button>
+              </div>
+            </div>
+            <br>
+            <!-- Modal -->
+            <%= form_for(@member, :html => {:multipart => true} , remote: true , authenticity_token: true) do |f| %>
+                <div class="modal fade" id="mymember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-center" id="myModalLabel">Technology Entry</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="field">
+                          <%= f.label :Image %><br>
+                          <%= f.file_field :image, class: "form-control member_image" %>
+                        </div>
+                        <div class="field">
+                          <%= f.label :Name %><br>
+                          <%= f.text_field :name , class: "form-control member_name"%>
+                        </div>
+                        <div class="field">
+                          <%= f.label :Description %><br>
+                          <%= f.text_area :description , class: "form-control member_description"%>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <%= submit_tag "Create", class:"btn btn-primary" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+            <!-- modal -->
+            <div class="carousel-navi">
+              <div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
+              <div id="work-next" class="arrow-right jcarousel-next"><i class="fa fa-angle-right"></i></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <!-------     meet the tema ------->
+        <div class="jcarousel recent-work-jc">
+          <ul class="jcarousel-list" id="my_member">
+        <%= render @members %>
+              </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Start recent work-->
+</div>
+<!-- Start Style Switcher
+<div class="switcher"></div>
+<!-- End Style Switcher -->
+<script>
+    $(window).load(function(){
+        $('.slider').fractionSlider({
+            'fullWidth': 			true,
+            'controls': 			true,
+            'responsive': 			true,
+            'dimensions': 			"1920,450",
+            'increase': 			true,
+            'pauseOnHover': 		true,
+            'slideEndAnimation': 	true,
+            'autoChange':           true
+        });
+    });
+</script>

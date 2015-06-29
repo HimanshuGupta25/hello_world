@@ -1,0 +1,5 @@
+$("#mytechnology").modal('hide');
+$(".technology_title").val('');
+$(".technology_contents").val('');
+$("#my_technology").prepend('<%= j render @technology %>')
+$("#technology_<%= @technology.id %>").hide().fadeIn(1000)

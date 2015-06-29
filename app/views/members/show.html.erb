@@ -1,0 +1,5 @@
+<%= image_tag @member.image_url(:thumb) if @member.image? %>
+<%= @member.name%>
+<%= @member.description%>
+<p><%= link_to("Edit this entry", edit_painting_path(@member)) %></p>
+<p><%= link_to("Back to all entries", entries_path) %></p>

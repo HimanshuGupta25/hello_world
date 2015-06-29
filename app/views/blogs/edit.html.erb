@@ -1,0 +1,11 @@
+<%= form_for(@blog) do |form| %>
+    <p><%= form.label("title") %></p>
+    <p><%= form.text_field("title") %></p>
+    <p><%= form.label("Short contents") %></p>
+    <p><%= form.text_area("short_contents") %></p>
+    <p><%= form.label("Main Contents") %></p>
+    <p><%= form.text_area("main_contents") %></p>
+    <p><%= form.submit %></p>
+<% end %>
+
+

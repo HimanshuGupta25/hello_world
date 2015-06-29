@@ -1,0 +1,5 @@
+<% for member in @members %>
+    <%= image_tag member.image_url(:thumb) if member.image? %>
+    <%= member.name%>
+    <%= member.description%>
+<% end %>

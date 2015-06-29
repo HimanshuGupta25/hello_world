@@ -1,0 +1,5 @@
+$("#myUpdateentry_<%= @entry.id %>").modal('hide');
+$("#entry_<%= @entry.id %>").fadeOut(500, function(){
+    $(this).remove();
+    $("#my_menu").prepend('<%= j render @entry %>');
+});

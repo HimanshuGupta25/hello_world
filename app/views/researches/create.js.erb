@@ -1,0 +1,6 @@
+$("#myresearch").modal('hide');
+$(".research_name").val('');
+$(".research_contents").val('');
+$(".research_main_contents").val('');
+$("#my_research").prepend('<%= j render @research %>')
+$("#research_<%= @research.id %>").hide().fadeIn(1000)

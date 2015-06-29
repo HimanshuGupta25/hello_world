@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HelloWorld</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+<header id="header">
+  <div id="top-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7 hidden-xs top-info">
+          <span><i class="fa"><% if current_user %>
+                <%= link_to "logout", destroy_user_session_path,method: :delete %>
+            <% else %>
+                <%= link_to "login", new_user_session_path %>
+            <% end %></i></span>
+          <span><i class="fa fa-phone"></i>Phone: (123) 456-7890</span>
+          <span><i class="fa fa-envelope"></i>Email: mail@example.com</span>
+        </div>
+        <div class="col-sm-5 top-info">
+          <ul>
+            <li><a href="" class="my-tweet"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="" class="my-facebook"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="" class="my-skype"><i class="fa fa-skype"></i></a></li>
+            <li><a href="" class="my-pint"><i class="fa fa-pinterest"></i></a></li>
+            <li><a href="" class="my-rss"><i class="fa fa-rss"></i></a></li>
+            <li><a href="" class="my-google"><i class="fa fa-google-plus"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- LOGO bar -->
+  <div id="logo-bar" class="clearfix">
+    <!-- Container -->
+    <div class="container">
+      <div class="row">
+        <!-- Logo / Mobile Menu -->
+        <div class="col-xs-12">
+          <div id="logo">
+            <h1><a href="index.html"><img src="assets/mapunity-logo-big.jpg" alt="Eve" /></a></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Container / End -->
+  </div>
+  <!--LOGO bar / End-->
+  </header>
+
+<%= yield %>
+<!--start footer-->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="widget_title">
+          <h4><span>About Us</span></h4>
+        </div>
+        <div class="widget_content">
+          <p>Mapunity develops technology to tackle social problems and development challenges. Our GIS, MIS and mobile technologies are used mostly by government departments and civil society organisations, and in the R&D initiatives of commercial ventures. </p>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="widget_title">
+
+          <h4><span>Contact</span></h4>
+        </div>
+
+        <div class="widget_content">
+          <ul class="widget_info_contact">
+            <li><i class="fa fa-map-marker"></i> <p><strong>Address</strong>: 1677 17th Main Road JP Nagar 2nd Phase BANGALORE 560076</p></li>
+            <li><i class="fa fa-user"></i> <p><strong>Phone</strong>:(+91) 9000-12345</p></li>
+            <li><i class="fa fa-envelope"></i> <p><strong>Email</strong>: <a href="mailto:contact@mapunity.in">contact@mapunity.in</a></p></li>
+            <li><i class="fa fa-globe"></i> <p><strong>Web</strong>: <a href="http://mapunity.in" data-placement="bottom">http://mapunity.in</a></p></li>
+          </ul>
+
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="widget_title">
+          <h4><span>Get Social</span></h4>
+
+        </div>
+        <div class="widget_social">
+          <ul class="footbot_social">
+            <li><a class="fb" href="#." data-placement="bottom" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="twtr" href="#." data-placement="bottom" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="gmail" href="#." data-placement="bottom" data-toggle="tooltip" title="Google"><i class="fa fa-google-plus"></i></a></li>
+            <li><a class="dribbble" href="#." data-placement="bottom" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
+            <li><a class="skype" href="#." data-placement="bottom" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
+            <li><a class="pinterest" href="#." data-placement="bottom" data-toggle="tooltip" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
+            <li><a class="instagram" href="#." data-placement="bottom" data-toggle="tooltip" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+            <li><a class="youtube" href="#." data-placement="bottom" data-toggle="tooltip" title="Youtube"><i class="fa fa-youtube"></i></a></li>
+            <li><a class="linkedin" href="#." data-placement="bottom" data-toggle="tooltip" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+            <li><a class="flickrs" href="#." data-placement="bottom" data-toggle="tooltip" title="Flickr"><i class="fa fa-flickr"></i></a></li>
+            <li><a class="rss" href="#." data-placement="bottom" data-toggle="tooltip" title="RSS"><i class="fa fa-rss"></i></a></li>
+          </ul>
+        </div>
+        <div class="widget_content">
+          <div class="tweet_go"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--end footer-->
+<section class="footer_bottom">
+  <div class="container">
+    <div class="row text-center">
+
+        <p class="copyright">&copy; Copyright 2014 Mapunity</p>
+
+     <!-- <div class="col-lg-6 ">
+        <div class="footer_social">
+          <ul class="footbot_social">
+            <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#." data-placement="top" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
+            <li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
+            <li><a class="rss" href="#." data-placement="top" data-toggle="tooltip" title="RSS"><i class="fa fa-rss"></i></a></li>
+          </ul>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
