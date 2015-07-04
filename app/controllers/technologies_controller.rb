@@ -11,7 +11,7 @@ class TechnologiesController < ApplicationController
       @technology = Technology.new(technology_params)
       respond_to do |format|
         if @technology.save
-          format.html { redirect_to(entries_path(@technology), notice: 'User was successfully updated.' ) }
+          format.html { redirect_to(entries_path(@technology), notice: 'devise was successfully updated.' ) }
           format.json { render :show, status: :ok, location: @technology }
           format.js
         else
@@ -29,7 +29,7 @@ class TechnologiesController < ApplicationController
       @technology = Technology.find(params["id"])
       respond_to do |format|
         if @technology.update(technology_params)
-          format.html { redirect_to(entries_path(@technology), notice: 'User was successfully updated.' ) }
+          format.html { redirect_to(entries_path(@technology), notice: 'devise was successfully updated.' ) }
           format.json { render :show, status: :ok, location: @technology }
           format.js
         else
@@ -43,7 +43,7 @@ class TechnologiesController < ApplicationController
       technology = Technology.find(params["id"])
       @technology= Technology.destroy(technology)
       respond_to do |format|
-        format.html { redirect_to(entries_path(@technology), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@technology), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @technology }
         format.js
       end

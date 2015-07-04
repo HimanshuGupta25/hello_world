@@ -11,7 +11,7 @@ class PaintingsController < ApplicationController
   def create
     painting_params = params[:painting].permit(:image)
     painting = Painting.create(painting_params)
-    redirect_to(entries_path(painting), notice: 'User was successfully updated.' )
+    redirect_to(entries_path(painting), notice: 'devise was successfully updated.' )
   end
   def edit
     @painting = Painting.find(params["id"])
@@ -20,11 +20,11 @@ class PaintingsController < ApplicationController
     painting_params = params[:painting].permit(:image)
     painting = Painting.find(params["id"])
     painting.update(painting_params)
-    redirect_to(entries_path(painting), notice: 'User was successfully updated.' )
+    redirect_to(entries_path(painting), notice: 'devise was successfully updated.' )
   end
   def destroy
     painting = Painting.find(params["id"])
     @painting= Painting.destroy(painting)
-    redirect_to(entries_path, notice: 'User was successfully destroyed.')
+    redirect_to(entries_path, notice: 'devise was successfully destroyed.')
   end
 end

@@ -13,7 +13,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to(entries_path(@blog), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@blog), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @blog }
         format.js
       else
@@ -31,7 +31,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params["id"])
     respond_to do |format|
       if @blog.update(blog_params)
-        format.html { redirect_to(entries_path(@blog), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@blog), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @blog }
         format.js
       else
@@ -45,7 +45,7 @@ class BlogsController < ApplicationController
     blog = Blog.find(params["id"])
     @blog= Blog.destroy(blog)
     respond_to do |format|
-      format.html { redirect_to(entries_path(@blog), notice: 'User was successfully updated.' ) }
+      format.html { redirect_to(entries_path(@blog), notice: 'devise was successfully updated.' ) }
       format.json { render :show, status: :ok, location: @blog }
       format.js
     end

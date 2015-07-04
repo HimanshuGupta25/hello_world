@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 201506171175589) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "devise", force: :cascade do |t|
     t.boolean  "admin"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

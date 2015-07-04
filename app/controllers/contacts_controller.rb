@@ -11,7 +11,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to(entries_path(@contact), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@contact), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @contact }
         format.js
       else
@@ -29,7 +29,7 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params["id"])
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to(entries_path(@contact), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@contact), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @contact }
         format.js
       else
@@ -43,7 +43,7 @@ class ContactsController < ApplicationController
     contact = Contact.find(params["id"])
     @contact= Contact.destroy(research)
     respond_to do |format|
-      format.html { redirect_to(entries_path(@contact), notice: 'User was successfully updated.' ) }
+      format.html { redirect_to(entries_path(@contact), notice: 'devise was successfully updated.' ) }
       format.json { render :show, status: :ok, location: @contact }
       format.js
     end

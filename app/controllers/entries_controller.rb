@@ -25,7 +25,7 @@ class EntriesController < ApplicationController
     @entry = Entry.new(entry_params)
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to(entries_path(@entry), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@entry), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @entry }
         format.js
       else
@@ -44,7 +44,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params["id"])
     respond_to do |format|
       if @entry.update(entry_params)
-        format.html { redirect_to(entries_path(@entry), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@entry), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @entry }
         format.js
       else
@@ -59,7 +59,7 @@ class EntriesController < ApplicationController
     entry = Entry.find(params["id"])
     @entry= Entry.destroy(entry)
     respond_to do |format|
-        format.html { redirect_to(entries_path(@entry), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@entry), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @entry }
         format.js
     end

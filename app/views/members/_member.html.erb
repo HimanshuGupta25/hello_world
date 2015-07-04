@@ -13,8 +13,8 @@
             <%= member.description%>
           </p>
         </div>
-        <div class="panel-body hidden" id="member_div_<%= member.id %>">
-          <div class="btn-group" role="button" aria-label="...">
+        <div class="panel-body">
+          <div class="btn-group hidden" role="button" aria-label="..." id="member_div_<%= member.id %>">
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatemember_<%= member.id %>">Edit</button>
             <%= link_to 'Delete', member, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" , remote: true%>
           </div>
@@ -25,10 +25,6 @@
                 $("#member_cancel_btn").removeClass('hidden');
             });
             $("#member_cancel_btn").click(function() {
-                $("#member_div_<%= member.id %>").addClass('hidden');
-                $("#member_cancel_btn").addClass('hidden');
-            });
-            $("#member_up_btn").click(function() {
                 $("#member_div_<%= member.id %>").addClass('hidden');
                 $("#member_cancel_btn").addClass('hidden');
             });
@@ -45,7 +41,7 @@
                   <div class="modal-body">
                     <div class="field">
                       <%= f.label :Photo %><br>
-                      <%= f.file_field :image,:required => true, class: "form-control" %>
+                      <%= f.file_field :image, autofocus: true ,:required => true, class: "form-control" %>
                     </div>
                     <div class="field">
                       <%= f.label :Name %><br>

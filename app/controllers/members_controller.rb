@@ -11,7 +11,7 @@ class MembersController < ApplicationController
       @member = Member.new(member_params)
       respond_to do |format|
         if @member.save
-          format.html { redirect_to(entries_path(@member), notice: 'User was successfully updated.' ) }
+          format.html { redirect_to(entries_path(@member), notice: 'devise was successfully updated.' ) }
           format.json { render :show, status: :ok, location: @member }
           format.js
         else
@@ -29,7 +29,7 @@ class MembersController < ApplicationController
       @member = Member.find(params["id"])
       respond_to do |format|
         if @member.update(member_params)
-          format.html { redirect_to(entries_path(@member), notice: 'User was successfully updated.' ) }
+          format.html { redirect_to(entries_path(@member), notice: 'devise was successfully updated.' ) }
           format.json { render :show, status: :ok, location: @member }
           format.js
         else
@@ -43,7 +43,7 @@ class MembersController < ApplicationController
       member = Member.find(params["id"])
       @member= Member.destroy(member)
       respond_to do |format|
-        format.html { redirect_to(entries_path(@member), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@member), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @member }
         format.js
       end

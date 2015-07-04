@@ -11,7 +11,7 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.new(gallery_params)
     respond_to do |format|
       if @gallery.save
-        format.html { redirect_to(entries_path(@gallery), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@gallery), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @gallery  }
         format.js
       else
@@ -29,7 +29,7 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params["id"])
     respond_to do |format|
       if @gallery.update(gallery_params)
-        format.html { redirect_to(entries_path(@gallery), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@gallery), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @gallery }
         format.js
       else
@@ -43,7 +43,7 @@ class GalleriesController < ApplicationController
     gallery = Gallery.find(params["id"])
     @gallery= Gallery.destroy(gallery)
     respond_to do |format|
-      format.html { redirect_to(entries_path(@gallery), notice: 'User was successfully updated.' ) }
+      format.html { redirect_to(entries_path(@gallery), notice: 'devise was successfully updated.' ) }
       format.json { render :show, status: :ok, location: @gallery }
       format.js
     end

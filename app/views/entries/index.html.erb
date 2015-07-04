@@ -25,7 +25,7 @@
         <div class="modal-body">
         <div class="field">
           <%= f.label :Name %><br>
-          <%= f.text_field :title ,:required => true, placeholder: "Please input title", :size =>"45x2", :style => "font-size:small;" , class: "form-control entry_title" %>
+          <%= f.text_field :title , autofocus: true ,:required => true, placeholder: "Please input title", :size =>"45x2", :style => "font-size:small;" , class: "form-control entry_title" %>
         </div>
           <div class="field">
             <%= f.label :Link %><br>
@@ -93,7 +93,7 @@
                     <div class="modal-body">
                       <div class="field">
                         <%= f.label :Title %><br>
-                        <%= f.text_field :title ,:required => true, placeholder: "Please input tilte", :size =>"45x2", :style => "font-size:small;" , class: "form-control gallery_title" %>
+                        <%= f.text_field :title , autofocus: true ,:required => true, placeholder: "Please input tilte", :size =>"45x2", :style => "font-size:small;" , class: "form-control gallery_title" %>
                       </div>
                       <div class="field">
                         <%= f.label :Contents %><br>
@@ -149,7 +149,7 @@
                     <div class="modal-body">
                       <div class="field">
                         <%= f.label :HomePhoto %><br>
-                        <%= f.file_field :image,:required => false, class: "form-control blog_image" %>
+                        <%= f.file_field :image, autofocus: true ,:required => false, class: "form-control blog_image" %>
                       </div>
                       <div class="field">
                         <%= f.label :Title %><br>
@@ -223,7 +223,7 @@
                   <div class="modal-body">
                     <div class="field">
                       <%= f.label :Title %><br>
-                      <%= f.text_field :name ,:required => true, placeholder: "Please input tilte", :size =>"45x2", :style => "font-size:small;" , class: "form-control research_name" %>
+                      <%= f.text_field :name , autofocus: true ,:required => true, placeholder: "Please input tilte", :size =>"45x2", :style => "font-size:small;" , class: "form-control research_name" %>
                     </div>
                     <div class="field">
                       <%= f.label :Content %><br>
@@ -287,7 +287,7 @@
                 <div class="modal-body text-left">
                   <div class="field">
                     <%= f.label :Title %><br>
-                    <%= f.text_field :title,:required => true, placeholder: "Please input tilte" , :style => "font-size:small;" , class: "form-control technology_title" %>
+                    <%= f.text_field :title, autofocus: true ,:required => true, placeholder: "Please input tilte" , :style => "font-size:small;" , class: "form-control technology_title" %>
                   </div>
                   <div class="field">
                     <%= f.label :Content %><br>
@@ -345,7 +345,7 @@
                       <div class="modal-body">
                         <div class="field">
                           <%= f.label :Photo %><br>
-                          <%= f.file_field :image,:required => true, class: "form-control member_image" %>
+                          <%= f.file_field :image, autofocus: true ,:required => true, class: "form-control member_image" %>
                         </div>
                         <div class="field">
                           <%= f.label :Name %><br>

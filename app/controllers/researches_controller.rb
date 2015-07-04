@@ -11,7 +11,7 @@ class ResearchesController < ApplicationController
     @research = Research.new(research_params)
     respond_to do |format|
       if @research.save
-        format.html { redirect_to(entries_path(@research), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@research), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @research }
         format.js
       else
@@ -29,7 +29,7 @@ class ResearchesController < ApplicationController
     @research = Research.find(params["id"])
     respond_to do |format|
       if @research.update(research_params)
-        format.html { redirect_to(entries_path(@research), notice: 'User was successfully updated.' ) }
+        format.html { redirect_to(entries_path(@research), notice: 'devise was successfully updated.' ) }
         format.json { render :show, status: :ok, location: @research }
         format.js
       else
@@ -43,7 +43,7 @@ class ResearchesController < ApplicationController
     research = Research.find(params["id"])
     @research= Research.destroy(research)
     respond_to do |format|
-      format.html { redirect_to(entries_path(@research), notice: 'User was successfully updated.' ) }
+      format.html { redirect_to(entries_path(@research), notice: 'devise was successfully updated.' ) }
       format.json { render :show, status: :ok, location: @research }
       format.js
     end
