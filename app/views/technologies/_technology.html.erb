@@ -3,13 +3,26 @@
     <h3><%= best_in_place technology, :title %></h3>
     <p><%= best_in_place technology, :contents %>.</p>
   </div>
-  <div style="color: #38B206;"><%= time_ago_in_words(technology.created_at) %></div>
-<div class="panel-body" id="technology_btn">
+<div class="panel-body hidden" id="technology_div_<%= technology.id %>">
   <div class="btn-group" role="button" aria-label="...">
     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatetechnology_<%= technology.id %>">Edit</button>
     <%= link_to 'Delete', technology, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" , remote: true%>
   </div>
 </div>
+  <script>
+      $("#technology_edit_btn").click(function() {
+          $("#technology_div_<%= technology.id %>").removeClass('hidden');
+          $("#technology_cancel_btn").removeClass('hidden');
+      });
+      $("#technology_cancel_btn").click(function() {
+          $("#technology_div_<%= technology.id %>").addClass('hidden');
+          $("#technology_cancel_btn").addClass('hidden');
+      });
+      $("#technology_up_btn").click(function() {
+          $("#technology_div_<%= technology.id %>").addClass('hidden');
+          $("#technology_cancel_btn").addClass('hidden');
+      });
+  </script>
 <!-- Modal -->
 <%= form_for(technology, :method => :put , remote: true) do |f| %>
     <div class="modal fade" id="myupdatetechnology_<%= technology.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -22,16 +35,16 @@
           <div class="modal-body">
             <div class="field">
               <%= f.label :Title %><br>
-              <%= f.text_field :title, class: "form-control" %>
+              <%= f.text_field :title,:required => true, placeholder: "Please input tilte" , :style => "font-size:small;" , class: "form-control" %>
             </div>
             <div class="field">
               <%= f.label :Content %><br>
-              <%= f.text_area :contents , class: "form-control"%>
+              <%= f.text_area :contents ,:required => true, placeholder: "Maximum 250 words" , :style => "font-size:small;" , :maxlength => 250, :rows => 4, class: "form-control"%>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= submit_tag "Update", class:"btn btn-primary" %>
+            <%= submit_tag "Update", class:"btn btn-primary" , id:"technology_up_btn" %>
           </div>
         </div>
       </div>

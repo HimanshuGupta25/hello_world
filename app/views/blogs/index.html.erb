@@ -20,7 +20,7 @@
   </div><!--/.container -->
 </div>
 <!--start wrapper-->
-<section class="wrapper">
+<!-- <section class="wrapper">
   <section class="page_head">
     <div class="container">
       <div class="row">
@@ -35,51 +35,40 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <section class="content blog">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-          <div class="blog_medium">
+          <div class="blog_single">
             <% for blog in @blogs %>
-            <article class="post">
-              <div class="post_date">
-                <span class="day"><%= blog.created_at.strftime("%d") %><span class="month"><%= blog.created_at.strftime("%b") %></span></span>
-
-              </div>
-              <!--<figure class="post_img">
-                <a href="#">
-                  <img src="images/blog/blog_medium_4.png" alt="blog post">
-                </a>
-              </figure> -->
-              <div class="post_content">
-                <div class="post_meta">
-                  <h2>
-                    <%= best_in_place blog, :title %>
-                  </h2>
-                  <div class="metaInfo">
-                    <span><i class="fa"></i> Time :<%= blog.created_at.strftime("%H:%M") %> </span>
-                    <span><i class="fa"></i> Year :<%= blog.created_at.strftime("%Y") %></span>
+                <article class="post">
+                  <div class="post_date">
+                    <span class="day"><%= blog.created_at.strftime("%d") %></span>
+                    <span class="month"><%= blog.created_at.strftime("%b") %></span>
                   </div>
-                </div>
-                <p><%= best_in_place blog, :main_contents %></p>
-              </div>
-            </article>
+                  <div class="post_content">
+                    <div class="post_meta">
+                      <h2>
+                        <%= blog.title %>
+                      </h2>
+                      <div class="metaInfo">
+                        <span><i class="fa fa-calendar"></i> <a href="#"><%= blog.created_at.strftime("%b") %> <%= blog.created_at.strftime("%d") %>, <%= blog.created_at.strftime("%Y") %></a> </span>
+                        <!-- <span><i class="fa fa-user"></i> By <a href="#">Louis</a> </span>
+                         <span><i class="fa fa-tag"></i> <a href="#">Emin</a>, <a href="#">News</a> </span>
+                         <span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span> -->
+                      </div>
+                    </div>
+                    <p><%= blog.short_contents %></p>
+
+                    <blockquote class="default">
+                      <%= blog.main_contents %>
+                    </blockquote>
+                  </div>
+                </article>
             <% end %>
           </div>
-         <!-- <div class="col-lg-12 col-md-12 col-sm-12">
-            <ul class="pagination pull-left mrgt-0">
-              <li><a href="#">&laquo;</a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">&raquo;</a></li>
-            </ul>
-          </div> -->
-
         </div>
 
      <!--Sidebar Widget-->

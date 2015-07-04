@@ -57,12 +57,12 @@
 .fraction-slider .next
 {
     right:10px;
-    top:85%;
+    top:48%;
 }
 .fraction-slider .prev
 {
     left:10px;
-    top:85%;
+    top:48%;
 }
 .fraction-slider a{text-decoration: none;}
 .fraction-slider .next:before

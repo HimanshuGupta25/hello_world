@@ -2,15 +2,15 @@
   <div class="serviceBox_1">
     <div class="icon_service">
       <i class="fa fa-home"></i>
-      <h3><%= best_in_place research, :name %></h3>
+      <h3><%= research.name %></h3>
     </div>
     <div class="fr_content">
       <p>
-        <%= best_in_place research, :contents %>
+        <%= research.contents %>
       </p>
 
-      <a class="read" href="#" id="myBtn">Read more</a>
-      <div class="modal fade" id="mymodal67" role="dialog">
+      <a class="read" href="#" data-toggle="modal" data-target="#myBtn_<%= research.id %>">Read more</a>
+      <div class="modal fade" id="myBtn_<%= research.id %>" role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
@@ -20,7 +20,7 @@
               <h4 class="modal-title"><%= research.name %></h4>
             </div>
             <div class="modal-body">
-              <p><%=best_in_place research, :main_contents %></p>
+              <p><%=research.contents %><%=research.main_contents %></p>
             </div>
 
             <div class="modal-footer">
@@ -32,13 +32,26 @@
       </div>
     </div>
   </div>
-  <div style="color: #38B206;"><%= time_ago_in_words(research.created_at) %></div>
-  <div class="panel-body">
+  <div class="panel-body hidden" id="research_div_<%= research.id %>">
     <div class="btn-group" role="button" aria-label="...">
       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdateresearch_<%= research.id %>">Edit</button>
       <%= link_to 'Delete', research, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" , remote: true%>
     </div>
   </div>
+  <script>
+      $("#research_edit_btn").click(function() {
+          $("#research_div_<%= research.id %>").removeClass('hidden');
+          $("#research_cancel_btn").removeClass('hidden');
+      });
+      $("#research_cancel_btn").click(function() {
+          $("#research_div_<%= research.id %>").addClass('hidden');
+          $("#research_cancel_btn").addClass('hidden');
+      });
+      $("#research_up_btn").click(function() {
+          $("#research_div_<%= research.id %>").addClass('hidden');
+          $("#research_cancel_btn").addClass('hidden');
+      });
+  </script>
   <!-- Modal -->
   <%= form_for(research, :method => :put , remote: true) do |f| %>
       <div class="modal fade" id="myupdateresearch_<%= research.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -51,20 +64,20 @@
             <div class="modal-body">
               <div class="field">
                 <%= f.label :Title %><br>
-                <%= f.text_field :name, class: "form-control" %>
+                <%= f.text_field :name ,:required => true, placeholder: "Please input tilte", :size =>"45x2", :style => "font-size:small;" , class: "form-control" %>
               </div>
               <div class="field">
                 <%= f.label :Content %><br>
-                <%= f.text_area :contents , class: "form-control"%>
+                <%= f.text_area :contents ,:required => true, :maxlength => 250, :rows => 4 , placeholder: "Maximum 250 words", :style => "font-size:small;"  , class: "form-control"%>
               </div>
               <div class="field">
                 <%= f.label :MainContent %><br>
-                <%= f.text_area :main_contents , class: "form-control"%>
+                <%= f.text_area :main_contents,:required => true,:rows=> 6 ,placeholder: "Please input main contents" , :style => "font-size:small;"  , class: "form-control"%>
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <%= submit_tag "Update", class:"btn btn-primary" %>
+              <%= submit_tag "Update", class:"btn btn-primary" , id:"research_up_btn" %>
             </div>
           </div>
         </div>

@@ -22,7 +22,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem "font-awesome-rails"
+gem 'html5_validators'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -48,6 +49,8 @@ group :development, :test do
   gem 'devise'
   gem 'rails_admin'
   gem 'remotipart', '~> 1.2'
+  gem 'ckeditor', github: 'galetahub/ckeditor'
+
 end
 group :assets do
   gem 'jquery-fileupload-rails'

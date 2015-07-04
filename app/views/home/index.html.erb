@@ -1,34 +1,4 @@
-<script>$(function() {
-
-    var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed"),
-            $fluidEl = $("figure");
-
-    $allVideos.each(function() {
-
-        $(this)
-            // jQuery .data does not work on object/embed elements
-                .attr('data-aspectRatio', this.height / this.width)
-                .removeAttr('height')
-                .removeAttr('width');
-
-    });
-
-    $(window).resize(function() {
-
-        var newWidth = $fluidEl.width();
-        $allVideos.each(function() {
-
-            var $el = $(this);
-            $el
-                    .width(newWidth)
-                    .height(newWidth * $el.attr('data-aspectRatio'));
-
-        });
-
-    }).resize();
-
-});</script>
-  <!-- Navigation
+<!-- Navigation
 ================================================== -->
 <div class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
@@ -103,31 +73,71 @@
   <div class="info_service">
     <div class="container">
       <div class="row sub_content">
-<!--http://www.youtube.com/embed/JMl8cQjBfqk -->
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-12">
           <div class="dividerHeading">
             <h4><span>Video</span></h4>
           </div>
-          <figure>
-            <iframe width="560" height="315" src="<% for gallery in @galleries %><%= gallery.url %><% end %>" frameborder="0" allowfullscreen></iframe>
+          <% for gallery in @galleries %>
+          <div class="col-lg-6">
+            <h2><%= gallery.title %></h2>
+            <p><%= gallery.content %></p>
+          </div>
+          <div class="col-lg-6">
+            <figure>
+            <iframe width="560" height="315" src="<%= gallery.url %>" frameborder="0" allowfullscreen></iframe>
           </figure>
+          </div>
+          <% end %>
         </div><!-- TESTIMONIALS END -->
-
-        <div class="col-lg-6">
+        </div>
+      <div class="row sub_content">
+        <div class="col-lg-12">
           <div class="dividerHeading">
             <h4><span>Blog</span></h4>
           </div>
-          <div class="tab-content clearfix" id="myTabContent">
-            <marquee id="test" behavior="scroll" direction="up" scrolldelay="100" scrollamount="4" onMouseOver="document.all.test.stop()" onMouseOut="document.all.test.start()" style=" height: 267px;">
+          <section class="content blog">
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="blog_medium">
+                    <% for blog in @blogs %>
+                        <article class="post">
+                          <div class="post_date">
 
-              <% for blog in @blogs %>
-                  <h3><%= link_to(blog.title, blogs_path) %></h3>
-                  <p><%= time_ago_in_words(blog.created_at) %></p>
-                  <p><%= blog.short_contents %></p>
-              <% end %>
+                            <span class="day"><%= blog.created_at.strftime("%d") %></span>
+                            <span class="month"><%= blog.created_at.strftime("%b") %></span>
 
-            </marquee>
-          </div>
+                          </div>
+
+                          <figure class="post_img">
+                            <a href="#">
+                              <%= image_tag blog.image_url(:thumb) if blog.image? %>
+                            </a>
+                          </figure>
+                          <div class="post_content">
+                            <div class="post_meta">
+                              <h2>
+                                <%= blog.title %>
+                              </h2>
+                              <div class="metaInfo">
+                                <span><i class="fa"></i> Time :<%= blog.created_at.strftime("%H:%M") %> </span>
+                                <span><i class="fa"></i> Year :<%= blog.created_at.strftime("%Y") %></span>
+                              </div>
+                            </div>
+                            <p><%= blog.short_contents %></p>
+                            <div class="text-center"><a class="btn btn-small btn-default" href="#">Read More</a></div>
+
+                          </div>
+
+                        </article>
+
+                    <% end %>
+                  </div>
+
+                </div>
+              </div>
+            </div> <!--/.container-->
+          </section>
           </div>
         </div>
       </div>
@@ -157,8 +167,8 @@
                     <%= research.contents %>
                   </p>
 
-                  <a class="read" href="#" id="myBtn">Read more</a>
-                  <div class="modal fade" id="myModal" role="dialog">
+                  <a class="read" href="#" data-toggle="modal" data-target="#myBtn_<%= research.id %>">Read more</a>
+                  <div class="modal fade" id="myBtn_<%= research.id %>" role="dialog">
                     <div class="modal-dialog">
 
                       <!-- Modal content-->
@@ -168,7 +178,7 @@
                           <h4 class="modal-title"><%= research.name %></h4>
                         </div>
                         <div class="modal-body">
-                          <p><%= research.main_contents %></p>
+                          <p><%= research.contents %><%= research.main_contents %></p>
                         </div>
 
                         <div class="modal-footer">
@@ -263,7 +273,6 @@
     </div>
   </div>
   <!--Start recent work-->
-
 </div>
 <script>
     $(document).ready(function(){

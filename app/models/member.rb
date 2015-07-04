@@ -1,4 +1,5 @@
 class Member < ActiveRecord::Base
+  validates_presence_of :image , :name , :description
   def create
     Member.create(member_params)
   end

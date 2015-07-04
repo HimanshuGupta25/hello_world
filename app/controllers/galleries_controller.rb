@@ -7,7 +7,7 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params["id"])
   end
   def create
-    gallery_params = params[:gallery].permit(:url)
+    gallery_params = params[:gallery].permit(:url , :content , :title)
     @gallery = Gallery.new(gallery_params)
     respond_to do |format|
       if @gallery.save
@@ -25,7 +25,7 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params["id"])
   end
   def update
-    gallery_params = params[:gallery].permit(:url)
+    gallery_params = params[:gallery].permit(:url , :content , :title)
     @gallery = Gallery.find(params["id"])
     respond_to do |format|
       if @gallery.update(gallery_params)

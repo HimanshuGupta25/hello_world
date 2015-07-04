@@ -9,7 +9,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params["id"])
   end
   def create
-    blog_params = params[:blog].permit(:title, :short_contents, :main_contents)
+    blog_params = params[:blog].permit(:image, :title, :short_contents, :main_contents)
     @blog = Blog.new(blog_params)
     respond_to do |format|
       if @blog.save
@@ -27,7 +27,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params["id"])
   end
   def update
-    blog_params = params[:blog].permit(:title, :short_contents, :main_contents)
+    blog_params = params[:blog].permit(:image, :title, :short_contents, :main_contents)
     @blog = Blog.find(params["id"])
     respond_to do |format|
       if @blog.update(blog_params)

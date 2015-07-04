@@ -1,11 +1,33 @@
-<figure id="gallery_<%= gallery.id %>">
-  <iframe width="560" height="315" src="<%= gallery.url %>" frameborder="0" allowfullscreen></iframe>
-</figure>
-<div class="panel-body">
+<div class="col-lg-12" id="gallery_<%= gallery.id %>">
+      <div class="col-lg-6">
+        <h2><%= gallery.title %></h2>
+        <p><%= gallery.content %></p>
+      </div>
+      <div class="col-lg-6">
+        <figure>
+          <iframe width="560" height="315" src="<%= gallery.url %>" frameborder="0" allowfullscreen></iframe>
+        </figure>
+      </div>
+  <script>
+      $("#gallery_edit_btn").click(function() {
+          $("#gallery_div_<%= gallery.id %>").removeClass('hidden');
+          $("#gallery_cancel_btn").removeClass('hidden');
+      });
+      $("#gallery_cancel_btn").click(function() {
+          $("#gallery_div_<%= gallery.id %>").addClass('hidden');
+          $("#gallery_cancel_btn").addClass('hidden');
+      });
+      $("#gallery_up_btn").click(function() {
+          $("#gallery_div_<%= gallery.id %>").addClass('hidden');
+          $("#gallery_cancel_btn").addClass('hidden');
+      });
+  </script>
+  <div class="panel-body hidden" id="gallery_div_<%= gallery.id %>">
   <div class="btn-group" role="button" aria-label="...">
     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdategallery_<%= gallery.id %>">Edit</button>
     <%= link_to 'Delete', gallery, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" , remote: true%>
   </div>
+
 </div>
 <!-- Modal -->
 <%= form_for(gallery, :method => :put , remote: true) do |f| %>
@@ -18,16 +40,27 @@
           </div>
           <div class="modal-body">
             <div class="field">
+              <%= f.label :Title %><br>
+              <%= f.text_field :title ,:required => true, placeholder: "Please input tilte", :size =>"45x2", :style => "font-size:small;" , class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= f.label :Contents %><br>
+              <%= f.text_area :content ,:required => true, :maxlength => 980, :rows => 6 , placeholder: "Maximum 980 words", :style => "font-size:small;" , class: "form-control" %>
+              <p></p>
+            </div>
+            <div class="field">
               <%= f.label :VideoUrl %><br>
-              <%= f.text_field :url, class: "form-control" %>
+              <%= f.text_field :url ,:required => true, placeholder: "Embed Form https://www.youtube.com/embed/kUylIQy-IgI", :size =>"45x2", :style => "font-size:small;" , class: "form-control" %>
+              <p></p>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= submit_tag "Update", class:"btn btn-primary" %>
+            <%= submit_tag "Update", class:"btn btn-primary" , id:"gallery_up_btn" %>
           </div>
         </div>
       </div>
     </div>
 <% end %>
 <!-- modal -->
+</div>

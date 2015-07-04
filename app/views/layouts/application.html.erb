@@ -5,34 +5,51 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <script>$(function() {
+
+      var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed"),
+              $fluidEl = $("figure");
+
+      $allVideos.each(function() {
+
+          $(this)
+              // jQuery .data does not work on object/embed elements
+                  .attr('data-aspectRatio', this.height / this.width)
+                  .removeAttr('height')
+                  .removeAttr('width');
+
+      });
+
+      $(window).resize(function() {
+
+          var newWidth = $fluidEl.width();
+          $allVideos.each(function() {
+
+              var $el = $(this);
+              $el
+                      .width(newWidth)
+                      .height(newWidth * $el.attr('data-aspectRatio'));
+
+          });
+
+      }).resize();
+
+  });</script>
+
 </head>
 <body>
 <header id="header">
   <div id="top-bar">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-7 hidden-xs top-info">
           <span><i class="fa"><% if current_user %>
                 <%= link_to "logout", destroy_user_session_path,method: :delete %>
             <% else %>
                 <%= link_to "login", new_user_session_path %>
             <% end %></i></span>
-          <span><i class="fa fa-phone"></i>Phone: (123) 456-7890</span>
-          <span><i class="fa fa-envelope"></i>Email: mail@example.com</span>
-        </div>
-        <div class="col-sm-5 top-info">
-          <ul>
-            <li><a href="" class="my-tweet"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="" class="my-facebook"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="" class="my-skype"><i class="fa fa-skype"></i></a></li>
-            <li><a href="" class="my-pint"><i class="fa fa-pinterest"></i></a></li>
-            <li><a href="" class="my-rss"><i class="fa fa-rss"></i></a></li>
-            <li><a href="" class="my-google"><i class="fa fa-google-plus"></i></a></li>
-          </ul>
-        </div>
       </div>
-    </div>
   </div>
   <!-- LOGO bar -->
   <div id="logo-bar" class="clearfix">

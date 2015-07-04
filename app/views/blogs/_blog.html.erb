@@ -1,17 +1,58 @@
-<div class="col-md-6 blog-main blog text-center " id="blog_<%= blog.id %>">
-  <div class="panel panel-info">
-    <h3 class="panel-title"><%= best_in_place blog, :title %></h3>
-    <p><%= best_in_place blog, :short_contents %></p>
-    <div style="color: #38B206;"><%= time_ago_in_words(blog.created_at) %></div>
+<div class="col-xs-12" id="blog_<%= blog.id %>">
+  <div class="blog_medium">
+        <article class="post">
+          <div class="post_date">
+
+            <span class="day"><%= blog.created_at.strftime("%d") %></span>
+            <span class="month"><%= blog.created_at.strftime("%b") %></span>
+
+          </div>
+
+          <figure class="post_img">
+            <a href="#">
+              <%= image_tag blog.image_url(:thumb) if blog.image? %>
+            </a>
+          </figure>
+          <div class="post_content">
+            <div class="post_meta">
+              <h2>
+                <%= blog.title %>
+              </h2>
+              <div class="metaInfo">
+                <span><i class="fa"></i> Time :<%= blog.created_at.strftime("%H:%M") %> </span>
+                <span><i class="fa"></i> Year :<%= blog.created_at.strftime("%Y") %></span>
+              </div>
+            </div>
+            <p><%= blog.short_contents %></p>
+            <div class="text-center"><a class="btn btn-small btn-default" href="blogs">Read More</a></div>
+
+          </div>
+
+        </article>
   </div>
-<div class="panel-body">
-  <div class="btn-group" role="button" aria-label="...">
-    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myUpdateblog_<%= blog.id %>">Edit</button>
-    <%= link_to 'Delete', blog, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" , remote: true%>
+ <!-- <div style="color: #38B206;"><%= time_ago_in_words(blog.created_at) %></div> -->
+  <div class="panel-body hidden" id="blog_div_<%= blog.id %>">
+    <div class="btn-group" role="button" aria-label="...">
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myUpdateblog_<%= blog.id %>">Edit</button>
+      <%= link_to 'Delete', blog, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" , remote: true%>
+    </div>
   </div>
-</div>
+  <script>
+      $("#blog_edit_btn").click(function() {
+          $("#blog_div_<%= blog.id %>").removeClass('hidden');
+          $("#blog_cancel_btn").removeClass('hidden');
+      });
+      $("#blog_cancel_btn").click(function() {
+          $("#blog_div_<%= blog.id %>").addClass('hidden');
+          $("#blog_cancel_btn").addClass('hidden');
+      });
+      $("#blog_up_btn").click(function() {
+          $("#blog_div_<%= blog.id %>").addClass('hidden');
+          $("#blog_cancel_btn").addClass('hidden');
+      });
+  </script>
   <!-- Modal -->
-  <%= form_for(blog, :method => :put , remote: true) do |f| %>
+  <%= form_for(blog, :html => {:multipart => true} , :method => :put , remote: true , authenticity_token: true) do |f| %>
       <div class="modal fade" id="myUpdateblog_<%= blog.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -21,21 +62,27 @@
             </div>
             <div class="modal-body">
               <div class="field">
+                <%= f.label :HomePhoto %><br>
+                <%= f.file_field :image, class: "form-control" %>
+              </div>
+              <div class="field">
                 <%= f.label :Title %><br>
-                <%= f.text_field :title, class: "form-control" %>
+                <%= f.text_field :title ,:required => true, placeholder: "Please input title" , :style => "font-size:small;" , class: "form-control" %>
               </div>
               <div class="field">
-                <%= f.label :ShortContent %><br>
-                <%= f.text_area :short_contents , class: "form-control"%>
+                <%= f.label :HomeContent %><br>
+                <%= f.text_area :short_contents ,:required => true, :maxlength => 400, :rows => 4 , placeholder: "Maximum 400 words" , :style => "font-size:small;" , class: "form-control"%>
               </div>
               <div class="field">
-                <%= f.label :MainContent %><br>
-                <%= f.text_area :main_contents , class: "form-control"%>
+                <%= f.label :BlogContent %><br>
+                <%= f.text_area :main_contents,:required => true, :rows => 6 , placeholder: "Please input blog content" , :style => "font-size:small;" ,  class: "form-control" %>
+              </div>
+              <div class="field">
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <%= submit_tag "Update", class:"btn btn-primary" %>
+              <%= submit_tag "Update", class:"btn btn-primary" , id:"blog_up_btn" %>
             </div>
           </div>
         </div>
@@ -43,5 +90,5 @@
   <% end %>
   <!-- modal -->
 
-
 </div>
+

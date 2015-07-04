@@ -8,18 +8,31 @@
           </div>
         </div>
         <div class="team_prof">
-          <h3 class="names"><%=best_in_place member, :name%></h3>
+          <h3 class="names"><%=member.name%></h3>
           <p class="description">
-            <%= best_in_place member, :description%>
+            <%= member.description%>
           </p>
         </div>
-        <div style="color: #38B206;"><%= time_ago_in_words(member.created_at) %></div>
-        <div class="panel-body">
+        <div class="panel-body hidden" id="member_div_<%= member.id %>">
           <div class="btn-group" role="button" aria-label="...">
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatemember_<%= member.id %>">Edit</button>
             <%= link_to 'Delete', member, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" , remote: true%>
           </div>
         </div>
+        <script>
+            $("#member_edit_btn").click(function() {
+                $("#member_div_<%= member.id %>").removeClass('hidden');
+                $("#member_cancel_btn").removeClass('hidden');
+            });
+            $("#member_cancel_btn").click(function() {
+                $("#member_div_<%= member.id %>").addClass('hidden');
+                $("#member_cancel_btn").addClass('hidden');
+            });
+            $("#member_up_btn").click(function() {
+                $("#member_div_<%= member.id %>").addClass('hidden');
+                $("#member_cancel_btn").addClass('hidden');
+            });
+        </script>
         <!-- Modal -->
         <%= form_for(member, :html => {:multipart => true} , :method => :put , remote: true , authenticity_token: true) do |f| %>
             <div class="modal fade" id="myupdatemember_<%= member.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -31,21 +44,21 @@
                   </div>
                   <div class="modal-body">
                     <div class="field">
-                      <%= f.label :Image %><br>
-                      <%= f.file_field :image, class: "form-control" %>
+                      <%= f.label :Photo %><br>
+                      <%= f.file_field :image,:required => true, class: "form-control" %>
                     </div>
                     <div class="field">
                       <%= f.label :Name %><br>
-                      <%= f.text_field :name , class: "form-control"%>
+                      <%= f.text_field :name ,:required => true, placeholder: "Please input name" , :style => "font-size:small;" , class: "form-control"%>
                     </div>
                     <div class="field">
-                      <%= f.label :Description %><br>
-                      <%= f.text_area :description , class: "form-control"%>
+                      <%= f.label :About %><br>
+                      <%= f.text_area :description ,:required => true, :maxlength => 300, :rows => 4 , placeholder: "Maximum 300 words" , :style => "font-size:small;" , class: "form-control"%>
                     </div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <%= submit_tag "Update", class:"btn btn-primary" %>
+                    <%= submit_tag "Update", class:"btn btn-primary" , id:"member_up_btn" %>
                   </div>
                 </div>
               </div>
