@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-
+ruby '2.2.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
@@ -44,7 +44,8 @@ gem 'carrierwave'
 gem 'rails_admin'
 gem 'remotipart', '~> 1.2'
 gem 'ckeditor', github: 'galetahub/ckeditor'
-
+gem 'puma'
+gem 'rails_12factor'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
