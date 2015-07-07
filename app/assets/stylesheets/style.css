@@ -901,11 +901,11 @@ ul.tags {
 }
 #filter li.selected a, #filter li a:hover{
     background:#323A45
-    -webkit-transition: all .15s ease-in-out;
+   /* -webkit-transition: all .15s ease-in-out;
        -moz-transition: all .15s ease-in-out;
         -ms-transition: all .15s ease-in-out;
          -o-transition: all .15s ease-in-out;
-            transition: all .15s ease-in-out;
+            transition: all .15s ease-in-out;*/
 }
 
 #list{ margin-bottom:30px; }

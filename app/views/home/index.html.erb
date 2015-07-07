@@ -100,38 +100,10 @@
               <div class="row">
                 <div class="col-xs-12">
                   <div class="blog_medium">
-                    <% for blog in @blogs %>
                         <article class="post">
-                          <div class="post_date">
-
-                            <span class="day"><%= blog.created_at.strftime("%d") %></span>
-                            <span class="month"><%= blog.created_at.strftime("%b") %></span>
-
-                          </div>
-
-                          <figure class="post_img">
-                            <a href="#">
-                              <%= image_tag blog.image_url(:thumb) if blog.image? %>
-                            </a>
-                          </figure>
-                          <div class="post_content">
-                            <div class="post_meta">
-                              <h2>
-                                <%= blog.title %>
-                              </h2>
-                              <div class="metaInfo">
-                                <span><i class="fa"></i> Time :<%= blog.created_at.strftime("%H:%M") %> </span>
-                                <span><i class="fa"></i> Year :<%= blog.created_at.strftime("%Y") %></span>
-                              </div>
-                            </div>
-                            <p><%= blog.short_contents %></p>
-                            <div class="text-center"><a class="btn btn-small btn-default" href="#">Read More</a></div>
-
-                          </div>
-
+                         <%= @blog = Blog.order("created_at").last %>
+                          <%= l = Location.where(["id = ?", @blog]).select("title").last %>
                         </article>
-
-                    <% end %>
                   </div>
 
                 </div>
