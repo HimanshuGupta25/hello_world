@@ -46,6 +46,7 @@ gem 'remotipart', '~> 1.2'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'puma'
 gem 'rails_12factor'
+gem "rack-timeout"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
