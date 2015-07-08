@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav" id="entry_<%= entry.id %>">
 <li>
-  <a href="<%= entry.link %>"><%= best_in_place entry, :title %></a>
+  <a href="#<%= entry.title %>"><%= best_in_place entry, :title %></a>
     <div class="btn-group hidden" role="button" aria-label="..." id="entry_div_<%= entry.id %>">
       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myUpdateentry_<%= entry.id %>">Edit</button>
       <%= link_to 'Delete', entry, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" , remote: true%>
@@ -34,10 +34,6 @@
             <div class="field">
               <%= f.label :Name %><br>
               <%= f.text_field :title , autofocus: true ,:required => true, placeholder: "Please input title", :size =>"45x2", :style => "font-size:small;" , class: "form-control" %>
-            </div>
-            <div class="field">
-              <%= f.label :Link %><br>
-              <%= f.text_field :link ,:required => true, placeholder: "Please paste link here exp: blogs", :size =>"45x2", :style => "font-size:small;" , class: "form-control"%>
             </div>
           </div>
           <div class="modal-footer">

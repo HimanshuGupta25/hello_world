@@ -21,7 +21,7 @@ class EntriesController < ApplicationController
   end
 
   def create
-    entry_params = params[:entry].permit(:title, :link)
+    entry_params = params[:entry].permit(:title)
     @entry = Entry.new(entry_params)
     respond_to do |format|
       if @entry.save
@@ -40,7 +40,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params["id"])
   end
   def update
-    entry_params = params[:entry].permit(:title, :link)
+    entry_params = params[:entry].permit(:title)
     @entry = Entry.find(params["id"])
     respond_to do |format|
       if @entry.update(entry_params)

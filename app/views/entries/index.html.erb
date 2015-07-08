@@ -27,10 +27,6 @@
           <%= f.label :Name %><br>
           <%= f.text_field :title , autofocus: true ,:required => true, placeholder: "Please input title", :size =>"45x2", :style => "font-size:small;" , class: "form-control entry_title" %>
         </div>
-          <div class="field">
-            <%= f.label :Link %><br>
-            <%= f.text_field :link ,:required => true, placeholder: "Please paste link here exp: blogs", :size =>"45x2", :style => "font-size:small;" , class: "form-control entry_link"%>
-          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -62,7 +58,7 @@
 <!--End Header-->
 <!--start wrapper-->
 <div class="wrapper">
-  <div class="info_service">
+  <div class="info_service" id="Video">
     <div class="container">
       <div class="row sub_content">
         <div class="col-lg-12">
@@ -120,6 +116,10 @@
 </div>
         </div><!-- TESTIMONIALS END -->
 </div>
+      </div>
+    </div>
+      <div class="info_service" id="Blog">
+        <div class="container">
       <div class="row sub_content">
         <div class="col-lg-12">
           <div class="dividerHeading">
@@ -311,8 +311,8 @@
   </div>
   <!--End Technology -->
   <!--Start People-->
-
-  <div class="latest_work" id="People">
+  <div class="info_service" id="People">
+  <div class="latest_work">
     <div class="container">
       <div class="row sub_content">
         <div class="carousel-intro">
@@ -380,6 +380,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
   <!--Start recent work-->
 </div>

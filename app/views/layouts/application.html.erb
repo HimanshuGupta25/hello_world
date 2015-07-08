@@ -43,7 +43,7 @@
 <body>
 <header id="header">
   <div id="top-bar">
-    <div class="container">
+    <div class="container" id="Home">
           <span><i class="fa"><% if current_user %>
                 <%= link_to "logout", destroy_user_session_path,method: :delete %>
             <% else %>
@@ -59,7 +59,7 @@
         <!-- Logo / Mobile Menu -->
         <div class="col-xs-12">
           <div id="logo">
-            <h1><a href="index.html"><img src="assets/mapunity-logo-big.jpg" alt="Eve" /></a></h1>
+            <h1><a href="#"><img src="assets/mapunity-logo-big.jpg" alt="Eve" /></a></h1>
           </div>
         </div>
       </div>
