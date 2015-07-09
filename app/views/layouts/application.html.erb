@@ -42,19 +42,10 @@
 </head>
 <body>
 <header id="header">
-  <div id="top-bar">
-    <div class="container" id="Home">
-          <span><i class="fa"><% if current_user %>
-                <%= link_to "logout", destroy_user_session_path,method: :delete %>
-            <% else %>
-                <%= link_to "login", new_user_session_path %>
-            <% end %></i></span>
-      </div>
-  </div>
   <!-- LOGO bar -->
   <div id="logo-bar" class="clearfix">
     <!-- Container -->
-    <div class="container">
+    <div class="container" id="Home">
       <div class="row">
         <!-- Logo / Mobile Menu -->
         <div class="col-xs-12">
