@@ -2,23 +2,37 @@
 
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-
   storage :file
-
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  version :thumb do
-    process :resize_to_limit => [200, 200]
+
+
+#{}"/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  # 'default_avatar.png' #rails will look at 'app/assets/images/default_avatar.png'
+
+
+# Create different versions of your uploaded files:
+  version :large_avatar do
+    # returns a 150x150 image
+    process :resize_to_fill => [250, 250 ]
+  end
+  version :medium_avatar do
+    # returns a 50x50 image
+    process :resize_to_fill => [200, 225]
+  end
+  version :small_avatar do
+    # returns a 35x35 image
+    process :resize_to_fill => [70, 95]
   end
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

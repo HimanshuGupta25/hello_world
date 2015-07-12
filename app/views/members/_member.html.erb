@@ -3,7 +3,7 @@
     <figure>
       <div class="eve-team">
         <div class="pic">
-          <%= image_tag member.image_url(:thumb) if member.image? %>
+          <%= image_tag member.image_url(:large_avatar) if member.image? %>
           <div class="social_media_team">
           </div>
         </div>
@@ -41,7 +41,7 @@
                   <div class="modal-body">
                     <div class="field">
                       <%= f.label :Photo %><br>
-                      <%= f.file_field :image, autofocus: true ,:required => true, class: "form-control" %>
+                      <%= f.file_field :image, autofocus: true , class: "form-control" %>
                     </div>
                     <div class="field">
                       <%= f.label :Name %><br>

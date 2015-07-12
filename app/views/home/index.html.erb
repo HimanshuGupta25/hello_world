@@ -1,6 +1,6 @@
 <!-- Navigation
 ================================================== -->
-<div class="navbar navbar-default navbar-static-top" role="navigation">
+<div class="navbar navbar-default navbar-static-top" role="navigation" xmlns="http://www.w3.org/1999/html">
   <div class="container">
     <div class="row">
       <div class="navbar-header">
@@ -106,7 +106,7 @@
               <div class="row">
                 <div class="col-xs-12">
                   <div class="blog_medium">
-                    <% for blog in @blogs %>
+                    <% for blog in Blog.all.order("id desc").limit(1).each %>
                         <article class="post">
                           <div class="post_date">
 
@@ -116,9 +116,7 @@
                           </div>
 
                           <figure class="post_img">
-                            <a href="#">
-                              <%= image_tag blog.image_url(:thumb) if blog.image? %>
-                            </a>
+                              <%= image_tag blog.image_url(:large_avatar) if blog.image? %>
                           </figure>
                           <div class="post_content">
                             <div class="post_meta">
@@ -131,7 +129,7 @@
                               </div>
                             </div>
                             <p><%= blog.short_contents %></p>
-                            <div class="text-center"><a class="btn btn-small btn-default" href="blogs">Read More</a></div>
+                            <div class="text-right"><a class="btn btn-small btn-default" href="<%=	blogs_path  %>">Read More</a></div>
 
                           </div>
 
@@ -256,7 +254,7 @@
               <figure>
                 <div class="eve-team">
                   <div class="pic">
-                    <%= image_tag member.image_url(:thumb) if member.image? %>
+                    <%= image_tag member.image_url(:large_avatar) if member.image? %>
                     <div class="social_media_team">
                     </div>
                   </div>

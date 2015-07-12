@@ -9,9 +9,7 @@
           </div>
 
           <figure class="post_img">
-            <a href="#">
-              <%= image_tag blog.image_url(:thumb) if blog.image? %>
-            </a>
+              <%= image_tag blog.image_url(:large_avatar) if blog.image? %>
           </figure>
           <div class="post_content">
             <div class="post_meta">
@@ -24,7 +22,7 @@
               </div>
             </div>
             <p><%= blog.short_contents %></p>
-            <div class="text-center"><a class="btn btn-small btn-default" href="blogs">Read More</a></div>
+            <div class="text-right"><a class="btn btn-small btn-default" href="<%= blogs_path %>">Read More</a></div>
 
           </div>
 
@@ -71,7 +69,7 @@
               </div>
               <div class="field">
                 <%= f.label :HomeContent %><br>
-                <%= f.text_area :short_contents ,:required => true, :maxlength => 400, :rows => 4 , placeholder: "Maximum 400 words" , :style => "font-size:small;" , class: "form-control"%>
+                <%= f.text_area :short_contents ,:required => true, :maxlength => 600, :rows => 4 , placeholder: "Maximum 600 words" , :style => "font-size:small;" , class: "form-control"%>
               </div>
               <div class="field">
                 <%= f.label :BlogContent %><br>

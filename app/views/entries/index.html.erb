@@ -158,7 +158,7 @@
                     <div class="modal-body">
                       <div class="field">
                         <%= f.label :HomePhoto %><br>
-                        <%= f.file_field :image, autofocus: true ,:required => false, class: "form-control blog_image" %>
+                        <%= f.file_field :image, autofocus: true , class: "form-control blog_image" %>
                       </div>
                       <div class="field">
                         <%= f.label :Title %><br>
@@ -166,7 +166,7 @@
                       </div>
                       <div class="field">
                         <%= f.label :HomeContent %><br>
-                        <%= f.text_area :short_contents ,:required => true, :maxlength => 400, :rows => 4 , placeholder: "Maximum 400 words" , :style => "font-size:small;" , class: "form-control blog_short_contents"%>
+                        <%= f.text_area :short_contents ,:required => true, :maxlength => 600, :rows => 4 , placeholder: "Maximum 600 words" , :style => "font-size:small;" , class: "form-control blog_short_contents"%>
                       </div>
                       <div class="field">
                         <%= f.label :BlogContent %><br>
@@ -354,7 +354,7 @@
                       <div class="modal-body">
                         <div class="field">
                           <%= f.label :Photo %><br>
-                          <%= f.file_field :image, autofocus: true ,:required => true, class: "form-control member_image" %>
+                          <%= f.file_field :image, autofocus: true , class: "form-control member_image" %>
                         </div>
                         <div class="field">
                           <%= f.label :Name %><br>

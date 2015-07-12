@@ -15,7 +15,19 @@ class BlogUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-
+  # Create different versions of your uploaded files:
+  version :large_avatar do
+    # returns a 150x150 image
+    process :resize_to_fill => [400, 250]
+  end
+  version :medium_avatar do
+    # returns a 50x50 image
+    process :resize_to_fill => [200, 225]
+  end
+  version :small_avatar do
+    # returns a 35x35 image
+    process :resize_to_fill => [70, 95]
+  end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -30,11 +42,6 @@ class BlogUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-
-  # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fit => [400, 500]
-  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
